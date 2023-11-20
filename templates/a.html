@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Web Authenticity Checker Project</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #000;
+            color: #fff;
+            font-size: 20px;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: stretch;
+            height: 100vh;
+        }
+
+        .left-column {
+            flex: 1;
+            background-image: url("Screenshot 2023-10-10 084120.jpg");
+            background-size: cover;
+            background-position: center;
+        }
+
+        .right-column {
+            flex: 1;
+            background-color: #e6e9c4; /* White background */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        h1 {
+            color: #0074d9;
+            font-size: 3em;
+            font-family: 'Arial Black', Gadget, sans-serif;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+            color: black; /* Black label text color */
+            font-weight: bold; /* Bold label text */
+        }
+
+        input[type="text"],
+        input[type="password"],
+        input[type="url"] {
+            width: 100%;
+            padding: 15px;
+            margin-bottom: 15px;
+            border: 4px solid #0074d9;
+            border-radius: 20px;
+            background-color: #fff; /* White background for input fields */
+            color: #000; /* Black text color */
+        }
+
+        button {
+            background-color: #0074d9;
+            color: #fff;
+            border: none;
+            border-radius: 30px;
+            padding: 10px 20px;
+            cursor: pointer;
+            margin-bottom: 10px;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        #link-checker {
+            display: none;
+        }
+
+        #link-result {
+            text-align: center;
+            margin-top: 15px;
+            color: #00cc66;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="left-column"></div>
+        <div class="right-column">
+            <div id="image-container">
+                <img src="images.jpeg" alt="Image" id="image" width="300px" height="200px">
+            </div>
+            <h1>Web Authenticity Checker</h1>
+            <div class="user-details">
+                <form id="login-form" action="/login" method="post">
+                    <label for="username">Username:</label>
+                    <input type="text" id="username" required>
+                    <label for="password">Password:</label>
+                    <input type="password" id="password" required>
+                    <button type="button" id="login-button">Login</button>
+                    <button type="button" id="create-user-button">Create User</button>
+                </form>
+
+                <div id="link-checker">
+                    <h2>Check Web Link Authenticity</h2>
+                    <form id="link-form">
+                        <label for="web-link">Web Link:</label>
+                        <input type="url" id="web-link" required>
+                        <button type="button" id="check-link-button">Check Link</button>
+                    </form>
+                    <p id="link-result"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript code for login, create user, and link checking -->
+    <script>
+        // Sample username and password (you should replace this with a secure authentication system)
+        let validUsername = "user";
+        let validPassword = "pwd";
+
+        // Login Form Elements
+        const loginForm = document.getElementById("login-form");
+        const usernameInput = document.getElementById("username");
+        const passwordInput = document.getElementById("password");
+        const loginButton = document.getElementById("login-button");
+
+        // Create User Button
+        const createUserButton = document.getElementById("create-user-button");
+
+        // Web Link Authenticity Checker Elements
+        const linkChecker = document.getElementById("link-checker");
+        const linkForm = document.getElementById("link-form");
+        const webLinkInput = document.getElementById("web-link");
+        const checkLinkButton = document.getElementById("check-link-button");
+        const linkResult = document.getElementById("link-result");
+
+        // Handle Enter key press for login form
+        loginForm.addEventListener("keyup", (event) => {
+            if (event.key === "Enter") {
+                loginButton.click(); // Trigger the login button click
+            }
+        });
+
+        // Event listener for login button
+        loginButton.addEventListener("click", () => {
+            const username = usernameInput.value;
+            const password = passwordInput.value;
+
+            // Check if username and password match
+            if (username === validUsername && password === validPassword) {
+                // Redirect to the local "weblink.html" file using a relative path
+                window.location.href = "http://127.0.0.1:5000";
+            } else {
+                alert("Invalid username or password. Please try again.");
+            }
+        });
+
+        // Event listener for create user button
+        createUserButton.addEventListener("click", () => {
+            const newUsername = prompt("Enter New Username:");
+            const newPassword = prompt("Enter New Password:");
+
+            if (newUsername && newPassword) {
+                validUsername = newUsername;
+                validPassword = newPassword;
+                alert("New User Created!");
+            }
+        });
+
+        // Event listener for check link button
+        checkLinkButton.addEventListener("click", () => {
+            const webLink = webLinkInput.value;
+
+            // You can implement the web link authenticity checking logic here
+            // For simplicity, let's assume all links are considered authentic in this example.
+            linkResult.textContent = "Link is authentic!";
+        });
+    </script>
+</body>
+</html>

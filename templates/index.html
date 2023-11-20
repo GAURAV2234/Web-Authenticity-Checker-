@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title><b>Link Authenticity Checker</b></title>
+    <style>
+        /* Set the background image and style for the body */
+        body {
+            background-color: #e6e9c4; /* Light gray background */
+            color: #333;
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        h1 {
+            font-size: 3em; /* Adjusted font size */
+            color: #0074d9; /* Blue color */
+        }
+
+        p {
+            font-size: 1.5em; /* Adjusted font size */
+        }
+
+        #urlInput {
+            font-size: 1.2em; /* Adjusted font size */
+            width: 300px;
+            padding: 10px;
+            border-radius: 30px; /* Make it circular */
+            border: 1px solid #ccc; /* Added border */
+            margin: 10px;
+        }
+
+        #checkButton {
+            font-size: 1.2em; /* Adjusted font size */
+            padding: 10px 20px;
+            border-radius: 30px; /* Make it circular */
+            border: none;
+            background-color: #0074d9; /* Blue background */
+            color: #fff;
+            cursor: pointer;
+        }
+
+        #checkButton:hover {
+            background-color: #0056b3; /* Darker blue on hover */
+        }
+        
+        #result {
+            font-size: 1.5em; /* Adjusted font size */
+            color: #0074d9; /* Blue color */
+        }
+
+        ul {
+            list-style-type: none; /* Remove bullet points */
+            padding: 0;
+        }
+
+        li {
+            margin: 5px 0;
+        }
+
+    </style>
+</head>
+<body>
+    <h1><b>Link Authenticity Checker</b></h1>
+    <p>Enter a web link to check its existence:</p>
+    <form method="post">
+        <label for="website_urls">Enter website link:</label>
+        <input type="text" name="website_urls" id="urlInput" required>
+        <button type="submit" id="checkButton">Check URL</button>
+    </form>
+    <div>
+        <h2 id="result">Results:</h2>
+        <ul>
+            {% for result in results %}
+                <li>{{ result[0] }}: {{ result[1] }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+</body>
+</html>
